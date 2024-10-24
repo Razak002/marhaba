@@ -8,7 +8,7 @@ const Reception = () => {
         <>
             <div className='flex flex-col justify-center items-center space-y-5 mt-10'>
 
-                <h1 className='font-bold text-4xl justify-center text-center italic'>Walimat</h1>
+                <h1 className='font-bold text-4xl justify-center text-center italic'>Venues</h1>
                 <div className='mx-20 flex justify-between gap-10 items-center p-2 md:p-10'>
                     <div>
                         <Image src='/images/invite.jpg' alt=''
@@ -16,10 +16,10 @@ const Reception = () => {
                             height={300}
                             className='object-cover md:h-[360px]'
                         />
-                        <h1 className='flex font-light text-2xl justify-center items-center'>Ceremony</h1>
+                        <h1 className='flex font-light text-2xl justify-center items-center'>Walimat</h1>
                         <div className='flex flex-col justify-center items-center '>
                             <p className='text-xs'>Dec 7-12-2024</p>
-                            <p className='text-xs'>Federal Capital Teritorry</p>
+                            <p className='text-xs text-center'>Federal Capital Teritorry</p>
                         </div>
                     </div>
                     <div>

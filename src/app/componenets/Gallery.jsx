@@ -58,8 +58,10 @@ const Gallery = () => {
                     </CarouselItem>
                 ))}
             </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
+            <div className="hidden md:flex"> {/* Hide buttons on mobile */}
+                <CarouselPrevious className="mr-2" />
+                <CarouselNext />
+            </div>
         </Carousel>
     )
 }

@@ -5,7 +5,7 @@ import React from 'react'
 const Rsvp = () => {
     return (
         <div className='bg-[#b4842496] p-5 md: mt-10'> {/* Creamy White Background */}
-            <div className='flex justify-between items-center'>
+            <div className='flex justify-between items-center gap-10'>
                 <div className='w-1/2 '>
                     <div className='flex flex-col'>
                         <h1 className='text-2xl text-yellow-800 font-serif whitespace-nowrap font-bold'>Abdullahi & Majidat</h1> {/* Gold Headings */}
@@ -14,7 +14,7 @@ const Rsvp = () => {
                                 <h2 className="text-xs whitespace-nowrap">Friday to sunday,</h2>
                                 <h2 className="text-xs whitespace-nowrap">Dec. 7-12-2024</h2>
                             </div>
-                            <div className="border-l h-[20px] my-0 mx-[10px] border-[#2F2F2F]"></div> {/* Dark Gray Divider */}
+                            <div className="border-l h-[20px] my-0 mx-[5px] border-[#2F2F2F]"></div> {/* Dark Gray Divider */}
                             <div>
                                 <h2 className="text-xs whitespace-nowrap">Federal capital Territory</h2>
                                 <h2 className="text-xs whitespace-nowrap">Abuja</h2>
@@ -38,14 +38,14 @@ const Rsvp = () => {
                         <p className="text-sm md:text-lg text-yellow-800 italic  font-light">
                             With love and joy in our hearts, we are delighted to invite you to celebrate the union of
                         </p>
-                        <h2 className="font-bold text-3xl text-pretty mt-2">Majidat & Abdullahi</h2>
+                        <h2 className="font-bold text-3xl text-pretty mt-2 text-yellow-800 italic font-serif">Majidat & Abdullahi</h2>
                         <p className="text-sm md:text-lg text-yellow-800  font-light mt-4">
                             On this special day, we seek your prayers and blessings as we embark on a beautiful journey together. Join us as we gather with loved ones to witness and celebrate this momentous occasion.
                         </p>
                     </div>
 
                     <div className="text-center mt-8">
-                        <h3 className="text-2xl font-bold text-pretty mb-2">Event Details</h3>
+                        <h3 className="text-2xl font-bold text-pretty mb-2 text-yellow-800 italic font-serif">Event Details</h3>
                         <p className="text-sm md:text-lg text-yellow-800  font-light">
                             Date: 07th Dec 2024 <br />
                             Time: 10am prompt <br />

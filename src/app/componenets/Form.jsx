@@ -26,7 +26,7 @@ const Form = () => {
     return (
         <div className='flex flex-col justify-center items-center mt-10 p-5'>
             <h2 className='text-2xl italic font-serif font-semibold'>What are you waiting for?</h2>
-            <p className='text-sm font-light whitespace-nowrap'>We would greatly appreciate if you could RSVP before 1st of December</p>
+            <p className='text-sm font-light text-wrap'>We would greatly appreciate if you could RSVP before 1st of December</p>
 
             <div className='mt-5'>
                 <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-2 md|:gap-4">
