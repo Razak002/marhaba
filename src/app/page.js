@@ -58,14 +58,15 @@ export default function Home() {
             <TypingAnimation
               className="font-serif text-6xl font-extrabold text-yellow-800"
               text="Abdullahi & Majidat."
+              duration={100}
             />
             {/* <div><h1 className="font-serif text-6xl font-extrabold text-yellow-800 ">Abdullahi</h1></div>
             <div><h1 className="font-serif text-6xl font-extrabold text-yellow-800 ">& Majeedat</h1></div> */}
 
-            <div className="py-3 mt-5 px-20 flex justify-center items-center bg-gray-300 border rounded-full">
+            <div className="py-3 mt-5 px-10 md:px-20 flex justify-center items-center bg-gray-300 border rounded-full">
               <div>
                 <h2 className="text-xs whitespace-nowrap">Friday to sunday,</h2>
-                <h2 className="text-xs whitespace-nowrap">Dec. 5-12-2024</h2>
+                <h2 className="text-xs whitespace-nowrap">Dec. 7th-Dec-2024</h2>
               </div>
 
               <div className="border-l h-[50px] my-0 mx-[10px] border-black"></div>
