@@ -14,6 +14,7 @@ import ShimmerButton from "@/components/ui/shimmer-button";
 import Footer from "./componenets/Footer";
 import Form from "./componenets/Form";
 import { motion } from "framer-motion";
+import { Toaster } from "react-hot-toast";
 
 export default function Home() {
   const audioRef = useRef(null);
@@ -124,7 +125,7 @@ export default function Home() {
       >
         <Rsvp />
       </motion.div>
-
+      <Toaster position="top-center" reverseOrder={false} />
       <Reception />
 
       <motion.div ref={formRef} initial={{ x: -100, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 1 }}>

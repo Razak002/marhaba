@@ -1,29 +1,13 @@
-
-
 "use client";
 
 import ShimmerButton from '@/components/ui/shimmer-button';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import emailjs from 'emailjs-com'; // Import emailjs
+import emailjs from 'emailjs-com';
+import { toast } from 'react-hot-toast';
 
-const sendEmail = (values, { resetForm }) => {
-    emailjs.send(
-        process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID,
-        process.env.NEXT_PUBLIC_EMAIL_TEMPLATE_ID,
-        values,
-        process.env.NEXT_PUBLIC_EMAIL_PUBLIC_KEY,
-        process.env.NEXT_PUBLIC_EMAIL_USER_ID // Add the user ID here
-    )
-        .then((result) => {
-            console.log("Message sent successfully:", result.text);
-            resetForm();  // Reset form after successful submission
-        })
-        .catch((error) => {
-            console.error("Error sending message:", error);
-        });
-};
 const Form = () => {
+    const formRef = useRef();
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -38,15 +22,27 @@ const Form = () => {
         });
     };
 
-    const handleSubmit = async (e) => {
+    const sendEmail = (e) => {
         e.preventDefault();
 
-        // Call the sendEmail function with formData and resetForm
-        sendEmail(formData, {
-            resetForm: () => setFormData({ name: '', email: '', message: '' }) // Reset form
-        });
+        emailjs
+            .sendForm(
+                'service_893eb5h', // Your EmailJS service ID
+                'template_ig5jlfg', // Your EmailJS template ID
+                formRef.current,
+                'AgQkdmtxtoHoKRahc' // Your EmailJS public key
+            )
+            .then(
+                () => {
+                    toast.success('We Cant Wait To Have you!');
+                    setFormData({ name: '', email: '', message: '' });
+                },
+                (error) => {
+                    toast.error('Failed to send message. Please try again.');
+                    console.error('Failed to send message:', error.text);
+                }
+            );
     };
-    console.log('Service ID:', process.env.NEXT_PUBLIC_EMAIL_SERVICE)
 
     return (
         <motion.div
@@ -70,7 +66,7 @@ const Form = () => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5, duration: 1 }}
             >
-                We would greatly appreciate if you could RSVP before 1st of December
+                We would greatly appreciate if you could RSVP before 1st of December.
             </motion.p>
 
             <motion.div
@@ -79,7 +75,7 @@ const Form = () => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.7, duration: 1 }}
             >
-                <form onSubmit={handleSubmit} className='grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2'>
+                <form ref={formRef} onSubmit={sendEmail} className='grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2'>
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -140,7 +136,7 @@ const Form = () => {
                         animate={{ opacity: 1 }}
                         transition={{ delay: 1.4, duration: 0.8 }}
                     >
-                        <ShimmerButton className='shadow-2xl h-12 w-full sm:w-48'>
+                        <ShimmerButton type='submit' className='shadow-2xl h-12 w-full sm:w-48'>
                             <span className='whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg'>
                                 RSVP
                             </span>
