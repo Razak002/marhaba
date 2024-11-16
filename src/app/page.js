@@ -68,7 +68,7 @@ export default function Home() {
             transition={{ duration: 1, delay: 0.5 }}
           >
             <TypingAnimation
-              className="font-serif text-6xl font-extrabold text-yellow-800"
+              className="font-serif text-4xl md:text-6xl font-extrabold text-yellow-800"
               text="Abdullahi & Majidat."
               duration={100}
             />

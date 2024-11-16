@@ -27,10 +27,10 @@ const Form = () => {
 
         emailjs
             .sendForm(
-                'service_893eb5h', // Your EmailJS service ID
-                'template_ig5jlfg', // Your EmailJS template ID
+                'service_893eb5h',
+                'template_ig5jlfg',
                 formRef.current,
-                'AgQkdmtxtoHoKRahc' // Your EmailJS public key
+                'AgQkdmtxtoHoKRahc'
             )
             .then(
                 () => {
@@ -46,13 +46,13 @@ const Form = () => {
 
     return (
         <motion.div
-            className='flex flex-col justify-center items-center mt-10 p-5'
+            className='flex flex-col justify-center items-center mt-6 p-4 sm:p-6 md:p-10 lg:p-16'
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
         >
             <motion.h2
-                className='text-2xl italic font-serif font-semibold'
+                className='text-xl sm:text-2xl md:text-3xl italic font-serif font-semibold text-center'
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3, duration: 1 }}
@@ -61,21 +61,21 @@ const Form = () => {
             </motion.h2>
 
             <motion.p
-                className='text-sm font-light text-wrap mt-2'
+                className='text-xs sm:text-sm md:text-lg font-light text-wrap mt-2 text-center'
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5, duration: 1 }}
             >
-                We would greatly appreciate if you could RSVP before 1st of December.
+             Don&apos;t forget to RSVP by December 7th. We&apos;d love to have you there!
             </motion.p>
 
             <motion.div
-                className='mt-5'
+                className='mt-5 w-full max-w-md'
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.7, duration: 1 }}
             >
-                <form ref={formRef} onSubmit={sendEmail} className='grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2'>
+                <form ref={formRef} onSubmit={sendEmail} className='grid grid-cols-1 gap-4 sm:grid-cols-2'>
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -113,6 +113,7 @@ const Form = () => {
                     </motion.div>
 
                     <motion.div
+                        className='col-span-1 sm:col-span-2'
                         initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 1.2, duration: 0.8 }}
@@ -131,12 +132,12 @@ const Form = () => {
                     </motion.div>
 
                     <motion.div
-                        className='mt-4 col-span-2'
+                        className='mt-4 col-span-1 sm:col-span-2 flex justify-center'
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 1.4, duration: 0.8 }}
                     >
-                        <ShimmerButton type='submit' className='shadow-2xl h-12 w-full sm:w-48'>
+                        <ShimmerButton type='submit' className='shadow-2xl w-full sm:w-auto'>
                             <span className='whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg'>
                                 RSVP
                             </span>

@@ -3,7 +3,7 @@ import Image from 'next/image';
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const Rsvp = () => {
+const Rsvp = ({ scrollToForm }) => {
   return (
     <motion.div
       className='bg-[#b4842496] p-5 md:mt-10'
@@ -11,20 +11,23 @@ const Rsvp = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1 }}
     >
-      <div className='flex justify-between items-center gap-10'>
+      {/* Main Container */}
+      <div className='flex flex-col md:flex-row md:justify-between items-center gap-10'>
         {/* Left Section */}
-        <div className='w-1/2'>
-          <div className='flex flex-col'>
-            <h1 className='text-2xl text-yellow-800 font-serif whitespace-nowrap font-bold'>Abdullahi & Majidat</h1>
-            <div className='flex gap-5 items-center text-[#0B3D0B]'>
+        <div className='w-full md:w-1/2'>
+          <div className='flex flex-col text-center md:text-left'>
+            <h1 className='text-2xl md:text-3xl text-yellow-800 font-serif font-bold'>
+              Abdullahi & Majidat
+            </h1>
+            <div className='flex flex-col md:flex-row gap-3 md:gap-5 items-center text-[#0B3D0B]'>
               <div>
-                <h2 className='text-xs whitespace-nowrap'>Friday to Sunday,</h2>
-                <h2 className='text-xs whitespace-nowrap'>Dec. 7-12-2024</h2>
+                <h2 className='text-xs md:text-sm'>Friday to Sunday,</h2>
+                <h2 className='text-xs md:text-sm'>Dec. 7-12-2024</h2>
               </div>
-              <div className='border-l h-[20px] my-0 mx-[5px] border-[#2F2F2F]'></div>
+              <div className='hidden md:block border-l h-5 md:h-8 border-[#2F2F2F]'></div>
               <div>
-                <h2 className='text-xs whitespace-nowrap'>Federal Capital Territory</h2>
-                <h2 className='text-xs whitespace-nowrap'>Abuja</h2>
+                <h2 className='text-xs md:text-sm'>Federal Capital Territory</h2>
+                <h2 className='text-xs md:text-sm'>Abuja</h2>
               </div>
             </div>
           </div>
@@ -32,45 +35,54 @@ const Rsvp = () => {
 
         {/* Right Section with Image */}
         <motion.div
+          className='w-full md:w-auto flex justify-center'
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.3 }}
         >
           <Image
             src='/images/single.png'
-            alt=''
+            alt='Couple Image'
             width={200}
             height={200}
-            className='rounded-lg shadow-lg'
+            className='rounded-lg mx-auto'
           />
-          <h2 className='italic flex justify-center items-center font-serif text-yellow-800 text-2xl ml-10'>MARHABA</h2>
+          <h2 className='italic text-center justify-center font-serif text-yellow-800 text-2xl md:ml-10'>
+            MARHABA
+          </h2>
         </motion.div>
       </div>
 
       {/* Event Details and Invitation Text */}
       <motion.div
-        className='flex justify-center items-center flex-col space-y-4'
+        className='flex justify-center items-center flex-col space-y-4 mt-8'
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5, duration: 1 }}
       >
-        <div>
-          <h1 className='font-bold text-2xl text-yellow-800 font-serif flex justify-center text-center'>Assalamualaikum wr.wb</h1>
+        <div className='w-full max-w-md md:max-w-lg'>
+          <h1 className='font-bold text-2xl md:text-3xl text-yellow-800 font-serif text-center'>
+            Assalamualaikum wr.wb
+          </h1>
           <div className='text-center mt-4'>
             <p className='text-sm md:text-lg text-yellow-800 italic font-light'>
               With love and joy in our hearts, we are delighted to invite you to celebrate the union of
             </p>
-            <h2 className='font-bold text-3xl text-yellow-800 italic font-serif mt-2'>Majidat & Abdullahi</h2>
+            <h2 className='font-bold text-3xl md:text-4xl text-yellow-800 italic font-serif mt-2'>
+              Majidat & Abdullahi
+            </h2>
             <p className='text-sm md:text-lg text-yellow-800 font-light mt-4'>
               On this special day, we seek your prayers and blessings as we embark on a beautiful journey together. Join us as we gather with loved ones to witness and celebrate this momentous occasion.
             </p>
           </div>
 
           <div className='text-center mt-8'>
-            <h3 className='text-2xl font-bold text-yellow-800 italic font-serif mb-2'>Event Details</h3>
+            <h3 className='text-2xl md:text-3xl font-bold text-yellow-800 italic font-serif mb-2'>
+              Event Details
+            </h3>
             <p className='text-sm md:text-lg text-yellow-800 font-light'>
               Date: 07th Dec 2024 <br />
               Time: 10am prompt <br />
-              Venue: Scc Road freedom Avenue Bwari <br />
+              Venue: Scc Road freedom Avenue Bwari
             </p>
           </div>
 
@@ -83,12 +95,13 @@ const Rsvp = () => {
 
         {/* RSVP Button with Animation */}
         <motion.div
+          className='w-full flex justify-center'
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
           transition={{ duration: 0.2 }}
         >
-          <ShimmerButton className='shadow-2xl'>
-            <span className='whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg'>
+          <ShimmerButton onClick={scrollToForm} className='shadow-2xl px-8 py-2'>
+            <span className='whitespace-pre-wrap text-center text-sm md:text-lg font-medium tracking-tight text-white'>
               RSVP
             </span>
           </ShimmerButton>
