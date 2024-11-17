@@ -25,11 +25,17 @@ const Form = () => {
     const sendEmail = (e) => {
         e.preventDefault();
 
+        const templateParams = {
+            to_name: formData.name,
+            from_name: 'maSH',
+            message: formData.message,
+        };
+
         emailjs
-            .sendForm(
+            .send(
                 'service_893eb5h',
                 'template_ig5jlfg',
-                formRef.current,
+                templateParams,
                 'AgQkdmtxtoHoKRahc'
             )
             .then(
@@ -43,6 +49,7 @@ const Form = () => {
                 }
             );
     };
+
 
     return (
         <motion.div
@@ -66,7 +73,7 @@ const Form = () => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5, duration: 1 }}
             >
-             Don&apos;t forget to RSVP by December 7th. We&apos;d love to have you there!
+                Don&apos;t forget to RSVP by December 7th. We&apos;d love to have you there!
             </motion.p>
 
             <motion.div
