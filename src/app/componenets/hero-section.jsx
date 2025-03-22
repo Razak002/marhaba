@@ -55,7 +55,7 @@ export function HeroSection() {
                 >
                     AI Models for
                     <br />
-                    <TypingAnimation>
+                    <TypingAnimation className="text-3xl md:text-5xl font-bold ">
                         Business Solutions
                     </TypingAnimation>
                 </motion.h1>
