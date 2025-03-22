@@ -42,15 +42,13 @@ export function PartnersSection() {
             <p className="text-center text-[hsla(232,30%,19%,1)] text-lg font-semibold mb-6">
                 Join 4,000+ companies already growing
             </p>
-            {/* <Slider {...settings} className="mx-auto max-w-6xl"> */}
-            <div className="flex justify-center items-center gap-5">
+            <Slider {...settings} className="mx-auto max-w-6xl">
                 <PartnerLogo name="SnapPlus" imageSrc="/Company.png" />
-                <PartnerLogo name="Circadee" imageSrc="/company1.png" />
-                <PartnerLogo name="Catalog" imageSrc="/company2.png" />
-                <PartnerLogo name="Quantum" imageSrc="/company3.png" />
-                <PartnerLogo name="InnovateX" imageSrc="/company4.png" />
-            </div>
-            {/* </Slider> */}
+                <PartnerLogo name="Circadee" imageSrc="/Company1.png" />
+                <PartnerLogo name="Catalog" imageSrc="/Company2.png" />
+                <PartnerLogo name="Quantum" imageSrc="/Company3.png" />
+                <PartnerLogo name="InnovateX" imageSrc="/Company4.png" />
+            </Slider>
         </section>
     );
 }
