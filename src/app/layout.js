@@ -1,22 +1,26 @@
-import { Inter } from "next/font/google";
-import "./globals.css";
-import Head from "next/head";
+import React from "react"
+import { Inter } from "next/font/google"
+import "./globals.css"
+import { InitAnimationsComponent } from "./componenets/InitAnimationsComponent"
 
-const inter = Inter({ subsets: ["latin"] });
+
+const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
-  title: "Marhaba",
-  description: "wedding ceremony of Majidat et Abdullahi",
-};
+  title: "AI Models for Business Solutions",
+  description: "Leverage the power of AI to automate, analyze, and optimize your workflows.",
+}
 
 export default function RootLayout({ children }) {
   return (
-    
     <html lang="en">
-          <Head>
-        <link rel="icon" href="/msq.png" /> 
-      </Head>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {children}
+        <InitAnimationsComponent />
+      </body>
     </html>
-  );
+  )
 }
+
+
+

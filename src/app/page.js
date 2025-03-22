@@ -1,149 +1,191 @@
-"use client";
 
-import Image from "next/image";
-import Navbar from "./componenets/Navbar";
-import Rsvp from "./componenets/Rsvp";
-import Reception from "./componenets/Reception";
-import TypingAnimation from "@/components/ui/typing-animation";
-import Location from "./componenets/Location";
-import Gallery from "./componenets/Gallery";
-import Timer from "./componenets/Timer";
-import { Play, Pause } from "lucide-react";
-import { useRef, useState } from "react";
-import ShimmerButton from "@/components/ui/shimmer-button";
-import Footer from "./componenets/Footer";
-import Form from "./componenets/Form";
-import { motion } from "framer-motion";
-import { Toaster } from "react-hot-toast";
+
+// import Image from "next/image"
+// import { TabsSection } from "../app/componenets/tabs-section"
+// import { HeroSection } from "../app/componenets/hero-section"
+// import { PartnersSection } from "../app/componenets/partners-section"
+
+// export default function Home() {
+//   return (
+//     <main className="min-h-screen">
+//       <div className="hero-gradient text-white">
+//         <header className="container mx-auto py-4 px-4 flex justify-between items-center">
+//           <div className="flex items-center">
+//             <Image src="/images/Content.png" alt="Logo" width={40} height={40} className="mr-2" />
+//           </div>
+//           <nav className="hidden md:flex space-x-6 text-sm">
+//             <a href="#" className="hover:text-blue-400 transition-colors">
+//               Models
+//             </a>
+//             <a href="#" className="hover:text-blue-400 transition-colors">
+//               Pricing
+//             </a>
+//             <a href="#" className="hover:text-blue-400 transition-colors">
+//               About Us
+//             </a>
+//             <a href="#" className="hover:text-blue-400 transition-colors">
+//               Contact Us
+//             </a>
+//             <a href="#" className="hover:text-blue-400 transition-colors">
+//               Custom Models
+//             </a>
+//           </nav>
+//           <div className="flex space-x-3">
+//             <button className="px-4 py-1 border border-white rounded-md text-sm hover:bg-white hover:text-slate-950 transition-colors">
+//               Login
+//             </button>
+//             <button className="px-4 py-1 bg-white text-blue-800 rounded-md text-sm hover:bg-blue-100 transition-colors">
+//               Get Started Now
+//             </button>
+//           </div>
+//         </header>
+
+//         <HeroSection />
+//       </div>
+
+//       <div className="bg-white text-slate-900">
+//         <PartnersSection />
+//         <TabsSection />
+//       </div>
+//     </main>
+//   )
+// }
+'use client'
+
+import Image from "next/image"
+import { useEffect, useRef } from "react"
+import { motion, useAnimation, useInView } from "framer-motion"
+import { TabsSection } from "../app/componenets/tabs-section"
+import { HeroSection } from "../app/componenets/hero-section"
+import { PartnersSection } from "../app/componenets/partners-section"
+import { MobileNav } from "../app/componenets/Mobile-Nav"
+
+// Custom hook for scroll animations
+function useScrollAnimation(threshold = 0.2) {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, threshold })
+  const controls = useAnimation()
+  
+  useEffect(() => {
+    if (isInView) {
+      controls.start("visible")
+    }
+  }, [isInView, controls])
+  
+  return { ref, controls }
+}
+
+const navLinks = [
+  { href: "#", label: "Models" },
+  { href: "#", label: "Pricing" },
+  { href: "#", label: "About Us" },
+  { href: "#", label: "Contact Us" },
+  { href: "#", label: "Custom Models" },
+]
 
 export default function Home() {
-  const audioRef = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const formRef = useRef(null);
-
-  const togglePlay = () => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause();
-      } else {
-        audioRef.current.play();
+  const headerAnimation = useScrollAnimation()
+  const contentAnimation = useScrollAnimation(0.1)
+  
+  const fadeInUpVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
       }
-      setIsPlaying(!isPlaying);
     }
-  };
-
-  const scrollToForm = () => {
-    if (formRef.current) {
-      formRef.current.scrollIntoView({ behavior: "smooth" });
+  }
+  
+  const staggerContainerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
     }
-  };
+  }
 
   return (
-    <main className="w-full font-custom ">
-      <audio ref={audioRef} loop preload="auto">
-        <source src="/music/song.mp3" type="audio/mp3" />
-        Your browser does not support the audio element.
-      </audio>
-
-      <Navbar scrollToForm={scrollToForm} />
-
-      <motion.div
-        className="relative w-full h-screen"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.5 }}
-      >
-        <Image
-          src="/images/bg1.jpg"
-          alt="cover"
-          layout="fill"
-          objectFit="cover"
-          quality={100}
-        />
-        <div className="absolute inset-0 z-10">
-          <motion.div
-            className="flex flex-col justify-center items-center h-screen"
-            initial={{ y: -50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1, delay: 0.5 }}
+    <main className="min-h-screen">
+      <div className="hero-gradient text-white">
+        <motion.header 
+          ref={headerAnimation.ref}
+          variants={fadeInUpVariants}
+          initial="hidden"
+          animate={headerAnimation.controls}
+          className="container mx-auto py-4 px-4 flex justify-between items-center"
+        >
+          <div className="flex items-center">
+            <Image src="/images/Content.png" alt="Logo" width={40} height={40} className="mr-2" />
+          </div>
+          
+          <motion.nav 
+            variants={staggerContainerVariants}
+            className="hidden md:flex space-x-6 text-sm"
           >
-            <TypingAnimation
-              className="font-serif text-4xl md:text-6xl font-extrabold text-yellow-800"
-              text="Abdullahi & Majidat."
-              duration={100}
-            />
-
-            <motion.div
-              className="py-3 mt-5 px-10 md:px-20 flex justify-center items-center bg-gray-300 border rounded-full"
-              initial={{ scale: 0.8 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.8, delay: 1 }}
+            {navLinks.map((link) => (
+              <motion.a 
+                key={link.label}
+                href={link.href}
+                variants={fadeInUpVariants}
+                className="hover:text-blue-400 transition-colors"
+                whileHover={{ scale: 1.05 }}
+              >
+                {link.label}
+              </motion.a>
+            ))}
+          </motion.nav>
+          
+          <motion.div 
+            variants={staggerContainerVariants}
+            className="hidden md:flex space-x-3"
+          >
+            <motion.button 
+              variants={fadeInUpVariants}
+              whileHover={{ scale: 1.05 }}
+              className="px-4 py-1 border border-white rounded-md text-sm hover:bg-white hover:text-slate-950 transition-colors"
             >
-              <div>
-                <h2 className="text-xs whitespace-nowrap">Friday to Sunday,</h2>
-                <h2 className="text-xs whitespace-nowrap">Dec. 7th-Dec-2024</h2>
-              </div>
-
-              <div className="border-l h-[50px] my-0 mx-[10px] border-black"></div>
-
-              <div>
-                <h2 className="text-xs whitespace-nowrap">Federal Capital Territory</h2>
-                <h2 className="text-xs whitespace-nowrap">Abuja</h2>
-              </div>
-            </motion.div>
-
-            <Timer targetDate="2024-12-07T00:00:00" />
-
-            <motion.div
-              onClick={togglePlay}
-              className="mt-6 px-4 py-2 rounded-full flex items-center space-x-2"
-              whileHover={{ scale: 1.1 }}
+              Login
+            </motion.button>
+            <motion.button 
+              variants={fadeInUpVariants}
+              whileHover={{ scale: 1.05 }}
+              className="px-4 py-1 bg-white text-[hsla(232,30%,19%,1)] rounded-md text-sm hover:bg-blue-100 transition-colors"
             >
-              {isPlaying ? (
-                <ShimmerButton className="shadow-2xl">
-                  <span className="flex items-center gap-2 whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white">
-                    <Pause /> <span>Pause</span>
-                  </span>
-                </ShimmerButton>
-              ) : (
-                <ShimmerButton className="shadow-2xl">
-                  <span className="flex items-center gap-2 whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white">
-                    <Play /> <span>Play</span>
-                  </span>
-                </ShimmerButton>
-              )}
-            </motion.div>
+              Get Started Now
+            </motion.button>
           </motion.div>
-        </div>
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-        viewport={{ once: true }}
-      >
-        <Rsvp />
-      </motion.div>
-      <Toaster position="top-center" reverseOrder={false} />
-      <Reception />
-
-      <motion.div ref={formRef} initial={{ x: -100, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 1 }}>
-        <Form />
-      </motion.div>
-
-      <Location />
-
-      <motion.div className="my-5 space-y-4" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 1 }}>
-        <h2 className="text-center font-serif capitalize font-bold text-4xl text-yellow-800 my-2 italic whitespace-nowrap">
-          epic shots 📸📷
-        </h2>
-        <div className="flex justify-center items-center">
-          <Gallery />
-        </div>
-      </motion.div>
-
-      <Footer />
+          
+          <MobileNav links={navLinks} />
+        </motion.header>
+        
+        <HeroSection />
+      </div>
+      
+      <div className="bg-white text-slate-900">
+        <motion.div
+          ref={contentAnimation.ref}
+          variants={fadeInUpVariants}
+          initial="hidden"
+          animate={contentAnimation.controls}
+        >
+          <PartnersSection />
+        </motion.div>
+        
+        <motion.div
+          ref={contentAnimation.ref}
+          variants={fadeInUpVariants}
+          initial="hidden"
+          animate={contentAnimation.controls}
+        >
+          <TabsSection />
+        </motion.div>
+      </div>
     </main>
-  );
+  )
 }
