@@ -316,7 +316,7 @@ export function TabsSection() {
                             animate={{ rotate: activeTab === tab.id ? [0, 15, 0] : 0 }}
                             transition={{ duration: 0.5, ease: "easeInOut" }}
                         >
-                            {tab.icon}
+                            {/* {tab.icon} */}
                         </motion.span>
                         {tab.label}
                     </motion.button>

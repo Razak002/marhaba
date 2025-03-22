@@ -95,7 +95,7 @@ export function MobileNav({ links }) {
               damping: 30,
               mass: 1
             }}
-            className="fixed top-0 right-0 bottom-0 w-[75%] max-w-sm bg-gradient-to-b from-blue-900 to-blue-700 z-50 p-6 shadow-xl"
+            className="fixed top-0 right-0 bottom-0 w-[75%] max-w-sm bg-blue-950 z-50 p-6 shadow-xl"
           >
             <div className="flex justify-end mb-8">
               <motion.button
