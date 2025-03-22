@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef } from "react"
 import { X, Menu } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
-import { cn } from "@/lib/utils"
 
 export function MobileNav({ links }) {
   const [isOpen, setIsOpen] = useState(false)
@@ -16,7 +15,7 @@ export function MobileNav({ links }) {
         setIsOpen(false)
       }
     }
-    
+
     window.addEventListener("resize", handleResize)
     return () => window.removeEventListener("resize", handleResize)
   }, [])
@@ -89,13 +88,16 @@ export function MobileNav({ links }) {
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
-            transition={{ 
-              type: "spring", 
-              stiffness: 300, 
+            transition={{
+              type: "spring",
+              stiffness: 300,
               damping: 30,
-              mass: 1
+              mass: 1,
             }}
-            className="fixed top-0 right-0 bottom-0 w-[75%] max-w-sm bg-blue-950 z-50 p-6 shadow-xl"
+            className="fixed top-0 right-0 bottom-0 w-[75%] max-w-sm hero-gradient z-50 p-6 shadow-xl"
+            style={{
+              background: "linear-gradient(to bottom, hsla(216, 84%, 9%, 1), hsla(227, 100%, 50%, 1))",
+            }}
           >
             <div className="flex justify-end mb-8">
               <motion.button
@@ -118,9 +120,9 @@ export function MobileNav({ links }) {
                   onClick={() => setIsOpen(false)}
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ 
+                  transition={{
                     delay: index * 0.1,
-                    duration: 0.3
+                    duration: 0.3,
                   }}
                   whileHover={{ x: 5, color: "rgb(191, 219, 254)" }}
                 >
@@ -129,22 +131,26 @@ export function MobileNav({ links }) {
               ))}
             </nav>
 
-            <motion.div 
+            <motion.div
               className="mt-8 flex flex-col space-y-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.5 }}
             >
-              <motion.button 
+              <motion.button
                 className="w-full py-2 border border-white rounded-md text-white hover:bg-white hover:text-blue-800 transition-colors"
                 whileHover={{ backgroundColor: "white", color: "rgb(30, 64, 175)" }}
                 whileTap={{ scale: 0.98 }}
               >
                 Login
               </motion.button>
-              <motion.button 
+              <motion.button
                 className="w-full py-2 bg-white text-blue-800 rounded-md hover:bg-blue-100 transition-colors"
-                whileHover={{ backgroundColor: "rgb(219, 234, 254)", y: -2, boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)" }}
+                whileHover={{
+                  backgroundColor: "rgb(219, 234, 254)",
+                  y: -2,
+                  boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
+                }}
                 whileTap={{ scale: 0.98, y: 0, boxShadow: "none" }}
               >
                 Get Started Now
@@ -156,3 +162,4 @@ export function MobileNav({ links }) {
     </div>
   )
 }
+
