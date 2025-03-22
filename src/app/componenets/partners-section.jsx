@@ -44,7 +44,7 @@ export function PartnersSection() {
             </p>
             <Slider {...settings} className="mx-auto max-w-6xl">
                 <PartnerLogo name="SnapPlus" imageSrc="/Company.png" />
-                <PartnerLogo name="Circadee" imageSrc="/company1.png" />
+                <PartnerLogo name="Circadee" imageSrc="/company.png" />
                 <PartnerLogo name="Catalog" imageSrc="/company2.png" />
                 <PartnerLogo name="Quantum" imageSrc="/company3.png" />
                 <PartnerLogo name="InnovateX" imageSrc="/company4.png" />
